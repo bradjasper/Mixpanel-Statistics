@@ -13,7 +13,7 @@ def main(events):
     if len(data) == 0:
         sys.exit("ERROR: Unable to retrieve data from Mixpanel")
 
-    matrix = event_data_to_matrix(data)
+    matrix = event_data_to_matrix(data, events)
 
     response_name = events.pop(0)
     response_data = matrix[:,0]
@@ -24,6 +24,22 @@ def main(events):
     model = ols(response_data, predictors_data, response_name, predictors_names)
 
     model.summary()
+
+    ## Generate Equation
+
+    # Gather list of coefficients so we can build our formula
+    coeff_dict = dict(zip(model.x_varnm, model.b))
+
+    equation = "%s = %s" % (response_name, coeff_dict['const']) # Start with constant coefficient
+
+    for name in predictors_names:
+        val = coeff_dict[name]
+        equation += " + %.5f(%s)" % (val, name)
+
+    print "Regression equation for response variable '%s' and predictor variables %s" % (response_name, predictors_names)
+    print
+    print equation
+    
 
 if __name__ == "__main__":
     
