@@ -1,64 +1,33 @@
-from itertools import chain
-import os
-from sets import ImmutableSet
-import pprint
+#!/usr/bin/env python
 
-from numpy import array
-from statlib.stats import apearsonr
+import sys
 
-from mixpanel import Mixpanel
+from scipy import corrcoef
 
-NUM_DAYS = 999
-events = ['success_view', 'checkout_view', 'checkout_error', '500_error',
-        'search_error', 'status_view', 'cancel_view', 'results_expire',
-        'results_none_active', 'results_none_finished']
+from utils import get_event_data, event_data_to_matrix, list_to_pairs
 
-client = Mixpanel(api_key=os.environ['MIXPANEL_API_KEY'], api_secret=os.environ["MIXPANEL_API_SECRET"])
+def main(events):
 
-print "Collecting data from MixPanel"
+    data = get_event_data(events)
+    matrix = event_data_to_matrix(data, events)
 
-data = client.request('events', 'general', {
-    'event' : events,
-    'unit' : 'day',
-    'interval' : NUM_DAYS,
-})
+    print "Correlation coefficients"
 
-series = data["data"]["values"]
+    for event1, event2 in list_to_pairs(events):
 
-dates = set(chain(*[value.keys() for key, value in series.iteritems()]))
-sorted(dates)
+        data1 = matrix[:,events.index(event1)]
+        data2 = matrix[:,events.index(event2)]
 
-event_data = {}
+        coeff = corrcoef(data1, data2)[0][1]
 
-# Normalize event data
-for date in dates:
-    for name in series:
-        val = series[name].get(date, 0)
-        try:
-            event_data[name].append(val)
-        except KeyError:
-            event_data[name] = [val]
+        print "%s\tx\t%s:\t%f" % (event1, event2, coeff)
 
 
-# Convert event data to numpy arrays
-for event, data in event_data.iteritems():
-    event_data[event] = array(data)
 
+if __name__ == "__main__":
 
-# Generate Event Pairs
-event_pairs = set()
-for event in event_data:
-    for event2 in event_data:
-        if event != event2:
-            event_pairs.add(ImmutableSet([event, event2]))
+    if len(sys.argv) < 3:
+        sys.exit("ERROR: Please enter at least 2 events to perform correlation" \
+            + "analysis. Like this: './correlation.py event_1 event_2")
 
-print "Correlation statistics for %s" % events
-
-for event1, event2 in event_pairs:
-
-    rval, pval = apearsonr(event_data[event1], event_data[event2])
-
-    if rval > .5:
-        print "Correlation between %s and %s: %f" % (event1, event2, rval)
-        print "P-value: %.10f" % pval
-        print
+    main(sys.argv[1::])
