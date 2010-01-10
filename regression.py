@@ -30,7 +30,7 @@ def main(events):
     # Gather list of coefficients so we can build our formula
     coeff_dict = dict(zip(model.x_varnm, model.b))
 
-    equation = "%s = %s" % (response_name, coeff_dict['const']) # Start with constant coefficient
+    equation = "%s = %.5f" % (response_name, coeff_dict['const']) # Start with constant coefficient
 
     for name in predictors_names:
         val = coeff_dict[name]
