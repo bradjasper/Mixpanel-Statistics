@@ -6,7 +6,7 @@ Python scripts that perform statistical analysis on Mixpanel event data
 Setup
 ========================================================================
 Retrieve your API key and secret from Mixpanel API Information
-(http://mixpanel.com/user/account/#info). Set the variables in yoru shell:
+(http://mixpanel.com/user/account/#info). Set the variables in your shell:
 
     export MIXPANEL_API_KEY=klsj234kljSLDKFJl243jlksdjf
     export MIXPANEL_API_SECRET=lkJSdlkj234lkjsdlfksjdflksjdf
@@ -66,4 +66,9 @@ Mixpanel events, do:
     Regression equation for response variable 'success_view'
 
     success_view = 1.15164371922 + 0.04923(checkout_view) + -0.03233(checkout_error)
-        
+
+
+
+Questions / Contact
+========================================================================
+bjasper at gmail dot com
