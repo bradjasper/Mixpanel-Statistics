@@ -8,14 +8,14 @@ from numpy import array
 
 from mixpanel import Mixpanel
 
-MIXPANEL_API_KEY = os.environ["MIXPANEL_API_KEY"]
-MIXPANEL_API_SECRET = os.environ["MIXPANEL_API_SECRET"]
-
 DEFAULT_UNIT = "day"
 DEFAULT_INTERVAL = 60
 
 def get_event_data(events, unit=DEFAULT_UNIT, interval=DEFAULT_INTERVAL):
     """Retrieve event data for a list of events"""
+
+    MIXPANEL_API_KEY = os.environ["MIXPANEL_API_KEY"]
+    MIXPANEL_API_SECRET = os.environ["MIXPANEL_API_SECRET"]
 
     client = Mixpanel(api_key=MIXPANEL_API_KEY, api_secret=MIXPANEL_API_SECRET)
 

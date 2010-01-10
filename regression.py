@@ -36,13 +36,12 @@ def main(events):
         val = coeff_dict[name]
         equation += " + %.5f(%s)" % (val, name)
 
-    print "Regression equation for response variable '%s' and predictor variables %s" % (response_name, predictors_names)
+    print "Regression equation for response variable '%s'" % response_name
     print
     print equation
-    
 
 if __name__ == "__main__":
-    
+
     if len(sys.argv) < 3:
         sys.exit("ERROR: Please enter at least 1 predictor and 1 response event " \
             + "to analyse. Like this: './regression.py predictor_event " \

@@ -8,7 +8,11 @@ import md5
 import hashlib
 import urllib
 import time
-import simplejson
+
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
 class Mixpanel(object):
     
@@ -37,7 +41,7 @@ class Mixpanel(object):
         
         request = urllib.urlopen(request_url)
 
-        return simplejson.loads(request.read())
+        return json.loads(request.read())
 
     def unicode_urlencode(self, params):
         if isinstance(params, dict):
@@ -45,7 +49,7 @@ class Mixpanel(object):
 
         for i, k in enumerate(params):
             if isinstance(k[1], list): 
-                params[i] = (k[0], simplejson.dumps(k[1]),) 
+                params[i] = (k[0], json.dumps(k[1]),) 
         
         return urllib.urlencode([(k, isinstance(v, unicode) and v.encode('utf-8') or v) for k, v in params])    
 
@@ -54,7 +58,7 @@ class Mixpanel(object):
             Hashes arguments by joining key=value pairs, appending a secret, and then taking the MD5 hex digest.
         """
         for a in args:
-            if isinstance(args[a], list): args[a] = simplejson.dumps(args[a])
+            if isinstance(args[a], list): args[a] = json.dumps(args[a])
         
         args_joined = ''.join(['%s=%s' % (isinstance(x, unicode) and x.encode("utf-8") or x, isinstance(args[x], unicode) and 
                       args[x].encode("utf-8") or args[x]) for x in sorted(args.keys())])
@@ -67,13 +71,3 @@ class Mixpanel(object):
             hash.update(self.api_secret)
             
         return hash.hexdigest() 
-
-if __name__ == '__main__':
-
-    api = Mixpanel(api_key='c1bf9105ff4ef6429aa355451cbd07b5', api_secret='260bc592536df8b5442485ecb8a39cfa')
-    data = api.request('events', 'general', {
-        'event' : ['success_view',],
-        'unit' : 'hour',
-        'interval' : 24,
-    })
-    print data

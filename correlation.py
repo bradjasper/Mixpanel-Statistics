@@ -23,7 +23,6 @@ def main(events):
         print "%s\tx\t%s:\t%f" % (event1, event2, coeff)
 
 
-
 if __name__ == "__main__":
 
     if len(sys.argv) < 3:
