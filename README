@@ -1,6 +1,12 @@
 Mixpanel Statistics
 ========================================================================
-Python scripts that perform statistical analysis on Mixpanel event data
+A collection of Python scripts that pull API data from Mixpanel and 
+perform statistics on the data. 
+
+Currently supported:
+    - Correlation Analysis
+    - Regression Analysis
+
 
 
 Setup
