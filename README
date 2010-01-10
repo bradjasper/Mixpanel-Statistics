@@ -17,7 +17,7 @@ Retrieve your API key and secret from Mixpanel API Information
     export MIXPANEL_API_SECRET=lkJSdlkj234lkjsdlfksjdflksjdf
 
 
-Correlation Usage
+Correlation Analysis
 ========================================================================
 Correlation determines the relationship between two variables. To 
 determine the correlation of different Mixpanel events, do:
@@ -34,7 +34,7 @@ determine the correlation of different Mixpanel events, do:
     checkout_error	x	success_view:	0.469129
      
 
-Regression Usage
+Regression Analysis
 ========================================================================
 Regression analysis studies the relationship between a dependent variable
 and other independent variables. To perform regression analysis on your
