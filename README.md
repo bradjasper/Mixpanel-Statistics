@@ -23,7 +23,8 @@ determine the correlation of different Mixpanel events, do:
     ./correlation.py success_view checkout_view checkout_error
  
 
-    ### Output
+    Output
+    ==============================================================================
     Correlation coefficients
     checkout_view	x	checkout_error:	0.600231
     checkout_view	x	success_view:	0.806892
@@ -38,7 +39,8 @@ Mixpanel events, do:
     ./regression.py [dependent_var] [independent_var1] [independent_var2]
     ./regression.py success_view checkout_view checkout_error
 
-    ### Output
+    Output
+    ==============================================================================
     Dependent Variable: success_view
     Method: Least Squares
     Date:  Sun, 10 Jan 2010
