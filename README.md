@@ -1,5 +1,4 @@
-Mixpanel Statistics
-========================================================================
+# Mixpanel Statistics
 A collection of Python scripts that pull API data from Mixpanel and 
 perform statistics on the data. 
 
@@ -8,8 +7,7 @@ Currently supported:
     - Regression Analysis
 
 
-Setup
-========================================================================
+## Setup
 Retrieve your API key and secret from Mixpanel API Information
 (http://mixpanel.com/user/account/#info). Set the variables in your shell:
 
@@ -17,8 +15,7 @@ Retrieve your API key and secret from Mixpanel API Information
     export MIXPANEL_API_SECRET=lkJSdlkj234lkjsdlfksjdflksjdf
 
 
-Correlation Analysis
-========================================================================
+## Correlation Analysis
 Correlation determines the relationship between two variables. To 
 determine the correlation of different Mixpanel events, do:
 
@@ -26,16 +23,14 @@ determine the correlation of different Mixpanel events, do:
     ./correlation.py success_view checkout_view checkout_error
  
 
-    Output
-    ==============================================================================
+    ### Output
     Correlation coefficients
     checkout_view	x	checkout_error:	0.600231
     checkout_view	x	success_view:	0.806892
     checkout_error	x	success_view:	0.469129
      
 
-Regression Analysis
-========================================================================
+## Regression Analysis
 Regression analysis studies the relationship between a dependent variable
 and other independent variables. To perform regression analysis on your
 Mixpanel events, do:
@@ -43,8 +38,7 @@ Mixpanel events, do:
     ./regression.py [dependent_var] [independent_var1] [independent_var2]
     ./regression.py success_view checkout_view checkout_error
 
-    Output
-    ==============================================================================
+    ### Output
     Dependent Variable: success_view
     Method: Least Squares
     Date:  Sun, 10 Jan 2010
@@ -74,6 +68,5 @@ Mixpanel events, do:
 
 
 
-Questions / Contact
-========================================================================
-bjasper at gmail dot com
+## Contact
+bjasper@gmail.com
