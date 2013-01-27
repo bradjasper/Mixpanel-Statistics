@@ -71,4 +71,4 @@ Mixpanel events, do:
 
 
 ## Contact
-bjasper@gmail.com
+http://bradjasper.com
