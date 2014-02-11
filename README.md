@@ -70,5 +70,9 @@ Mixpanel events, do:
 
 
 
+
 ## Contact
-http://bradjasper.com
+
+Web: http://bradjasper.com<br>
+Twitter: <a href="https://twitter.com/bradjasper">@bradjasper</a><br>
+Email: <a href="mailto:contact@bradjasper.com">contact@bradjasper.com</a><br>
